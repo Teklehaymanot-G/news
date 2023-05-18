@@ -72,7 +72,11 @@ const PageChangePassword = () => {
                 localStorage.getItem("author-session") || "{}"
               );
 
-              loggedIn.author = { ...loggedIn?.author, firstTime: false };
+              loggedIn.author = {
+                ...loggedIn?.author,
+                firstTime: false,
+                password: newPassword,
+              };
 
               localStorage.setItem(
                 "authors",
@@ -94,6 +98,7 @@ const PageChangePassword = () => {
 
               // setLogged(true);
               <Navigate to="/" />;
+              navigate("/");
               toast.success("Successfully Changed");
             }}
           >

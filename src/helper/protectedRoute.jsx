@@ -1,29 +1,9 @@
 import PageChangePassword from "app/(others)/changePassowrd/page";
-import Loading from "components/Button/Loading";
 import { LoggedInContext } from "context/loggedInContext";
-import { useState, useEffect } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
-export const ProtectedRoute = ({ author: any }) => {
-  //   const dispatch = useDispatch();
-  const [author, setAuthor] = useState([]);
-
-  // useEffect(() => {
-  //   // let checkToken = async () => {
-  //   //   let authorParsed = await JSON.parse(
-  //   //     localStorage.getItem("author-session") || "[]"
-  //   //   );
-  //   //   console.log(authorParsed);
-  //   //   setAuthor(authorParsed);
-  //   // };
-  //   // checkToken();
-
-  //   let authorParsed = JSON.parse(
-  //     localStorage.getItem("author-session") || "[]"
-  //   );
-  console.log(author);
-  //   setAuthor(authorParsed);
-  // }, []);
+export const ProtectedRoute = ({ author }) => {
+  console.log(author?.author?.firstTime);
 
   return author?.token ? (
     author?.author?.firstTime ? (

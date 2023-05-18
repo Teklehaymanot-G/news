@@ -83,31 +83,31 @@ export const pages: Page[] = [
 ];
 
 const MyRoutes = () => {
-  const [author, setAuthor] = useState({});
+  const [author, setAuthor] = useState();
   const [autourCheckLoading, setAutourCheckLoading] = useState(true);
 
   useEffect(() => {
-    // let checkToken = async () => {
-    //   let autourParsed = await JSON.parse(
-    //     localStorage.getItem("author-session") || "[]"
-    //   );
-    //   console.log(autourParsed);
-    //   setAuthor(autourParsed);
-    // };
-    // checkToken();
+    let checkToken = async () => {
+      let authorsParsed = await JSON.parse(
+        localStorage.getItem("author-session") || "{}"
+      );
+      // console.log(authorsParsed);
+      setAuthor(authorsParsed);
+    };
+    checkToken();
 
-    let autourParsed = JSON.parse(
-      localStorage.getItem("author-session") || "{}"
-    );
-    console.log(autourParsed);
-    setAuthor(autourParsed);
+    // let autourParsed = JSON.parse(
+    //   localStorage.getItem("author-session") || "{}"
+    // );
+    // console.log(authorsParsed);
+    // setAuthor(authorsParsed);
 
     setAutourCheckLoading(false);
   }, []);
 
-  if (autourCheckLoading) <Loading />;
-
   if (autourCheckLoading) return <Loading />;
+
+  console.log(author);
 
   return (
     <BrowserRouter>
