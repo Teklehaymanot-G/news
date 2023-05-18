@@ -8,7 +8,7 @@ import NcLink from "components/NcLink/NcLink";
 import Heading2 from "components/Heading/Heading2";
 import Image from "components/Image";
 import Layout from "../layout";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const loginSocials = [
@@ -88,7 +88,11 @@ const PageLogin = () => {
                   "author-session",
                   JSON.stringify({ author: findAuthor, token: Math.random() })
                 );
-                navigate("/");
+                // window to="/change-password" />;
+
+                findAuthor?.firstTime
+                  ? navigate("/change-password")
+                  : navigate("/");
                 toast.success("Welcome");
               } else {
                 toast.error("Username / Password is not correct");

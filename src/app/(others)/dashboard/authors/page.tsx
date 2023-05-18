@@ -8,15 +8,14 @@ import Label from "components/Label/Label";
 import Input from "components/Input/Input";
 import ButtonSecondary from "components/Button/ButtonSecondary";
 import Textarea from "components/Textarea/Textarea";
+import { toast } from "react-toastify";
 
 const DashboardAuthors = () => {
-  console.log("asd");
-
   const [addAuthor, setAddAuthor] = useState(false);
   const [profile, setProfile] = useState("");
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
-  const [description, setDecription] = useState("");
+  const [description, setDescription] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -124,7 +123,7 @@ const DashboardAuthors = () => {
                         className="mt-1"
                         rows={4}
                         value={description}
-                        onChange={(e) => setDecription(e.target.value)}
+                        onChange={(e) => setDescription(e.target.value)}
                       />
                       <p className="mt-1 text-sm text-neutral-500">
                         Brief description about the author.
@@ -177,6 +176,7 @@ const DashboardAuthors = () => {
                               <input
                                 id="file-upload"
                                 name="file-upload"
+                                accept="image/png, image/gif, image/jpeg"
                                 type="file"
                                 className="sr-only"
                                 onChange={(e) => encodeImageFileAsURL(e)}
@@ -190,7 +190,39 @@ const DashboardAuthors = () => {
                         </div>
                       </div>
                     </label>
-                    <ButtonPrimary className="md:col-span-2" type="submit">
+                    <ButtonPrimary
+                      className="md:col-span-2"
+                      type="button"
+                      onClick={() => {
+                        let newData = [
+                          ...authorsList,
+                          {
+                            id: Math?.random(),
+                            fullName,
+                            email,
+                            description,
+                            password,
+                            profile,
+                            status: "Active",
+                            firstTime: true,
+                          },
+                        ];
+                        localStorage.setItem(
+                          "authors",
+                          JSON.stringify(newData)
+                        );
+                        setAuthorsList(newData);
+
+                        toast.success("Successfully Added");
+                        setAddAuthor(false);
+                        setProfile("");
+                        setFullName("");
+                        setEmail("");
+                        setDescription("");
+                        setPassword("");
+                        setConfirmPassword("");
+                      }}
+                    >
                       Submit author
                     </ButtonPrimary>
                   </form>

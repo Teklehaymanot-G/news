@@ -4,26 +4,26 @@ import { LoggedInContext } from "context/loggedInContext";
 import { useState, useEffect } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
-export const ProtectedRoute = () => {
+export const ProtectedRoute = ({ author: any }) => {
   //   const dispatch = useDispatch();
   const [author, setAuthor] = useState([]);
 
-  useEffect(() => {
-    // let checkToken = async () => {
-    //   let authorParsed = await JSON.parse(
-    //     localStorage.getItem("author-session") || "[]"
-    //   );
-    //   console.log(authorParsed);
-    //   setAuthor(authorParsed);
-    // };
-    // checkToken();
+  // useEffect(() => {
+  //   // let checkToken = async () => {
+  //   //   let authorParsed = await JSON.parse(
+  //   //     localStorage.getItem("author-session") || "[]"
+  //   //   );
+  //   //   console.log(authorParsed);
+  //   //   setAuthor(authorParsed);
+  //   // };
+  //   // checkToken();
 
-    let authorParsed = JSON.parse(
-      localStorage.getItem("author-session") || "[]"
-    );
-    console.log(authorParsed);
-    setAuthor(authorParsed);
-  }, []);
+  //   let authorParsed = JSON.parse(
+  //     localStorage.getItem("author-session") || "[]"
+  //   );
+  console.log(author);
+  //   setAuthor(authorParsed);
+  // }, []);
 
   return author?.token ? (
     author?.author?.firstTime ? (
