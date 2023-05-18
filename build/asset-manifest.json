@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.c58b1c9b.css",
+    "main.js": "/static/js/main.18bf4877.js",
+    "static/js/496.e280f8e3.chunk.js": "/static/js/496.e280f8e3.chunk.js",
+    "static/media/about-hero-right.png": "/static/media/about-hero-right.534fc28b738f026ab253.png",
+    "static/media/Poppins-Light.ttf": "/static/media/Poppins-Light.f41b63c0bb0963ace821.ttf",
+    "static/media/Poppins-Regular.ttf": "/static/media/Poppins-Regular.8081832fc5cfbf634aa6.ttf",
+    "static/media/Poppins-Medium.ttf": "/static/media/Poppins-Medium.9e1bb626874ed49aa343.ttf",
+    "static/media/Poppins-SemiBold.ttf": "/static/media/Poppins-SemiBold.cce5625b56ec678e4202.ttf",
+    "static/media/Poppins-Bold.ttf": "/static/media/Poppins-Bold.404e299be26d78e66794.ttf",
+    "static/media/podcast.jpg": "/static/media/podcast.79a0676c77351345b834.jpg",
+    "static/media/SVG-subcribe2.png": "/static/media/SVG-subcribe2.efb832b25bd6eca32484.png",
+    "static/media/13.jpg": "/static/media/13.f8888912b12de4b7a84f.jpg",
+    "static/media/8.jpg": "/static/media/8.ce5f252ae5871de13c94.jpg",
+    "static/media/Google.svg": "/static/media/Google.14c804f8c298e718f222f1e6e52b1067.svg",
+    "static/media/Twitter.svg": "/static/media/Twitter.942c0e43717670a23fa4fe889627ead2.svg",
+    "static/media/Facebook.svg": "/static/media/Facebook.1a707b6f565f3d903a12c1113f251b48.svg",
+    "index.html": "/index.html",
+    "main.c58b1c9b.css.map": "/static/css/main.c58b1c9b.css.map",
+    "main.18bf4877.js.map": "/static/js/main.18bf4877.js.map",
+    "496.e280f8e3.chunk.js.map": "/static/js/496.e280f8e3.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c58b1c9b.css",
+    "static/js/main.18bf4877.js"
+  ]
+}

@@ -10,6 +10,8 @@ import ButtonSecondary from "components/Button/ButtonSecondary";
 import Textarea from "components/Textarea/Textarea";
 
 const DashboardAuthors = () => {
+  console.log("asd");
+
   const [addAuthor, setAddAuthor] = useState(false);
   const [profile, setProfile] = useState("");
   const [fullName, setFullName] = useState("");
