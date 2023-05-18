@@ -25,10 +25,6 @@ export const ProtectedRoute = () => {
     setAuthor(authorParsed);
   }, []);
 
-  console.log(author);
-
-  return <Loading />;
-
   return author?.token ? (
     author?.author?.firstTime ? (
       <LoggedInContext.Provider value={author}>
