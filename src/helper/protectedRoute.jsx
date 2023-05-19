@@ -3,7 +3,7 @@ import { LoggedInContext } from "context/loggedInContext";
 import { Navigate, Outlet } from "react-router-dom";
 
 export const ProtectedRoute = ({ author }) => {
-  console.log(author?.author?.firstTime);
+  // console.log(author);
 
   return author?.token ? (
     author?.author?.firstTime ? (

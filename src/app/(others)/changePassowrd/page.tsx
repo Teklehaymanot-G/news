@@ -9,7 +9,6 @@ import Layout from "../layout";
 
 const PageChangePassword = () => {
   let author = useContext(LoggedInContext);
-  console.log("change password", author?.author.firstTime);
 
   const navigate = useNavigate();
   const [newPassword, setNewPassword] = useState("");
