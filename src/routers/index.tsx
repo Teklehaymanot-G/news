@@ -119,11 +119,11 @@ const MyRoutes = () => {
         <Route path="/login" element={<PageLogin />} />
         <Route path="/dashboard/authors" element={<DashboardAuthors />} />
 
-        <Route element={<ProtectedRoute author={author} />}>
+        {/* <Route element={<ProtectedRoute author={author} />}> */}
           {pages.map(({ component: Component, path }, index) => {
             return <Route key={index} element={<Component />} path={path} />;
           })}
-        </Route>
+        {/* </Route> */}
         <Route element={<Page404 />} />
       </Routes>
 
