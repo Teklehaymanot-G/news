@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { DEMO_POSTS } from "data/posts";
 import { PostDataType } from "data/types";
 import Pagination from "components/Pagination/Pagination";
@@ -24,6 +24,7 @@ import NcDropDown from "components/NcDropDown/NcDropDown";
 import { SOCIALS_DATA } from "components/SocialsShare/SocialsShare";
 import AccountActionDropdown from "components/AccountActionDropdown/AccountActionDropdown";
 import Image from "components/Image";
+import { useParams } from "react-router-dom";
 
 const posts: PostDataType[] = DEMO_POSTS.filter((_, i) => i < 12);
 const FILTERS = [
@@ -36,6 +37,30 @@ const FILTERS = [
 const TABS = ["Articles", "Favorites", "Saved"];
 
 const PageAuthor = () => {
+  const params = useParams();
+  // console.log(params);
+
+  const [author, setAuthor] = useState({
+    id: -1,
+    firstName: "",
+    lastName: "",
+    displayName: "",
+    gender: "",
+    desc: "",
+    jobName: "",
+    bgImage: "",
+    status: "",
+    email: "",
+    avatar: "",
+    password: "",
+    href: "",
+    count: 10,
+  });
+  useEffect(() => {
+    let authorsParsed = JSON?.parse(localStorage.getItem("authors") || "[]");
+    setAuthor(authorsParsed?.find((item: any) => item?.id == params?.id));
+  }, []);
+
   const [tabActive, setTabActive] = useState<string>(TABS[0]);
 
   const handleClickTab = (item: string) => {
@@ -51,10 +76,10 @@ const PageAuthor = () => {
       <div className="w-full">
         <div className="relative w-full h-40 md:h-60 2xl:h-72">
           <NcImage
-            alt=""
+            alt={author?.displayName}
             containerClassName="absolute inset-0"
             sizes="(max-width: 1280px) 100vw, 1536px"
-            src="https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+            src={author?.bgImage}
             className="object-cover w-full h-full"
             fill
           />
@@ -65,7 +90,7 @@ const PageAuthor = () => {
               <div className="wil-avatar relative flex-shrink-0 inline-flex items-center justify-center overflow-hidden text-neutral-100 uppercase font-semibold rounded-full w-20 h-20 text-xl lg:text-2xl lg:w-36 lg:h-36 ring-4 ring-white dark:ring-0 shadow-2xl z-0">
                 <Image
                   alt="Avatar"
-                  src={avatarImgs[3]}
+                  src={author?.avatar}
                   fill
                   className="object-cover"
                 />
@@ -76,16 +101,14 @@ const PageAuthor = () => {
             <div className="pt-5 md:pt-1 lg:ml-6 xl:ml-12 flex-grow">
               <div className="max-w-screen-sm space-y-3.5 ">
                 <h2 className="inline-flex items-center text-2xl sm:text-3xl lg:text-4xl font-semibold">
-                  <span>Dony Herrera</span>
+                  <span>{author?.displayName}</span>
                   <VerifyIcon
                     className="ml-2"
                     iconClass="w-6 h-6 sm:w-7 sm:h-7 xl:w-8 xl:h-8"
                   />
                 </h2>
                 <span className="block text-sm text-neutral-500 dark:text-neutral-400">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Porro autem totam iure quibusdam asperiores numquam quae animi
-                  assumenda necessitatibus consectetur.
+                  {author?.desc}
                 </span>
                 <a
                   href="##"
@@ -93,7 +116,7 @@ const PageAuthor = () => {
                 >
                   <GlobeAltIcon className="flex-shrink-0 w-4 h-4" />
                   <span className="text-neutral-700 dark:text-neutral-300 truncate">
-                    https://example.com/me
+                    {author?.email}
                   </span>
                 </a>
                 <SocialsList itemClass="block w-7 h-7" />

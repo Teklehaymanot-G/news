@@ -14,7 +14,7 @@ const MAGAZINE2_POSTS = DEMO_POSTS.filter((_, i) => i >= 0 && i < 7);
 //
 
 const PageHome = () => {
-  console.log("change password");
+  console.log(DEMO_CATEGORIES.filter((_, i) => i < 10));
 
   return (
     <div className="nc-PageHome relative">

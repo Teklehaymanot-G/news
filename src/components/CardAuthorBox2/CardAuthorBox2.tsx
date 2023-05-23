@@ -14,7 +14,15 @@ const CardAuthorBox2: FC<CardAuthorBox2Props> = ({
   className = "",
   author,
 }) => {
-  const { displayName, href = "/", avatar, jobName, count, bgImage } = author;
+  const {
+    displayName,
+    href = `/author/` + author?.id,
+    avatar,
+    jobName,
+    count,
+    bgImage,
+  } = author || {};
+
   return (
     <Link
       href={href}
@@ -43,7 +51,7 @@ const CardAuthorBox2: FC<CardAuthorBox2Props> = ({
           sizeClass="w-16 h-16 text-2xl"
           radius="rounded-full"
           imgUrl={avatar}
-          userName={displayName}
+          userName={displayName || ""}
         />
         <div className="mt-3">
           <h2 className={`text-base font-medium`}>

@@ -37,21 +37,26 @@ const people = [
 const DashboardSubmitPost = () => {
   const [title, setTitle] = useState("");
   const [postExcerpt, setPostExcerpt] = useState("");
-  const [category, setCategory] = useState("");
+  const [categoriesId, setCategoryId] = useState("");
+  const [authorId, setAuthorId] = useState("");
   const [tags, setTags] = useState("");
   const [audio, setAudio] = useState("");
   const [featuredImage, setFeaturedImage] = useState("");
   const [postContent, setPostContent] = useState("");
-  const [type, setType] = useState("Text");
+  const [postType, setPostType] = useState("Standard");
   const [selectedPeople, setSelectedPeople] = useState([people[0], people[1]]);
 
   const [categoryList, setCategoryList] = useState([{ id: "", name: "" }]);
+  const [authorList, setAuthorList] = useState([{ id: "", displayName: "" }]);
   const [postList, setPostList] = useState([]);
   useEffect(() => {
     let categoryParsed = JSON?.parse(
       localStorage.getItem("categories") || "[]"
     );
     setCategoryList(categoryParsed);
+
+    let authorParsed = JSON?.parse(localStorage.getItem("authors") || "[]");
+    setAuthorList(authorParsed);
 
     let postParsed = JSON?.parse(localStorage.getItem("posts") || "[]");
     setPostList(postParsed);
@@ -91,11 +96,12 @@ const DashboardSubmitPost = () => {
                   id: Math?.random(),
                   title,
                   postExcerpt,
-                  category,
+                  categoriesId,
                   tags,
                   postContent,
                   featuredImage,
-                  type,
+                  authorId,
+                  postType,
                   audio,
                 },
               ];
@@ -130,8 +136,8 @@ const DashboardSubmitPost = () => {
 
               <Select
                 className="mt-1"
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
+                value={categoriesId}
+                onChange={(e) => setCategoryId(e.target.value)}
               >
                 <option value="-1">– select –</option>
                 {categoryList
@@ -142,6 +148,22 @@ const DashboardSubmitPost = () => {
               </Select>
             </label>
             <label className="block">
+              <Label>Author</Label>
+
+              <Select
+                className="mt-1"
+                value={authorId}
+                onChange={(e) => setAuthorId(e.target.value)}
+              >
+                <option value="-1">– select –</option>
+                {authorList
+                  ?.filter((item) => item?.id !== "")
+                  ?.map((cat) => (
+                    <option value={cat?.id}>{cat?.displayName}</option>
+                  ))}
+              </Select>
+            </label>
+            <label className="block md:col-span-2">
               {/* <Label>Tags</Label>
 
               <Input
@@ -174,16 +196,16 @@ const DashboardSubmitPost = () => {
 
               <Select
                 className="mt-1"
-                value={type}
-                onChange={(e) => setType(e.target.value)}
+                value={postType}
+                onChange={(e) => setPostType(e.target.value)}
               >
                 <option value="-1">– select –</option>
-                <option value="Text">Text</option>
+                <option value="Standard">Standard</option>
                 <option value="Audio">Audio</option>
               </Select>
             </label>
 
-            {type === "Audio" && (
+            {postType === "Audio" && (
               <label className="block">
                 <Label>Audio</Label>
 

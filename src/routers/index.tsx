@@ -1,7 +1,9 @@
 import PageArchiveAudio from "app/(archives)/archive-2/page";
 import PageArchiveVideo from "app/(archives)/archive-3/page";
 import PageArchive from "app/(archives)/archive/page";
+import PageFavorites from "app/(archives)/favorites/favorites";
 import PageHome from "app/(home)/page";
+import PageChangePassword from "app/(others)/changePassowrd/page";
 import PageContact from "app/(others)/contact/page";
 import DashboardAuthors from "app/(others)/dashboard/authors/page";
 import DashboardBilingAddress from "app/(others)/dashboard/billing-address/page";
@@ -17,46 +19,41 @@ import PageSignUp from "app/(others)/signup/page";
 import PageSubcription from "app/(others)/subscription/page";
 import PageSearchV2 from "app/(search)/search-2/page";
 import PageSearch from "app/(search)/search/page";
-import PageSingleTemplate2 from "app/(singles)/(default)/single-2/page";
-import PageSingleAudio from "app/(singles)/(default)/single-audio/page";
-import PageSingleGallery from "app/(singles)/(default)/single-gallery/page";
-import PageSingleVideo from "app/(singles)/(default)/single-video/page";
 import PageSingle from "app/(singles)/(default)/single/page";
-import PageSingleTemplate3 from "app/(singles)/(has-sidebar)/single-3/page";
-import PageSingleTemplate4 from "app/(singles)/(has-sidebar)/single-4/page";
 import SiteHeader from "app/SiteHeader";
 import PageAbout from "app/about/page";
 import PageAuthor from "app/author/page";
 import Page404 from "app/not-found";
+import Loading from "components/Button/Loading";
 import Footer from "components/Footer/Footer";
 import MusicPlayer from "components/MusicPlayer/MusicPlayer";
 import { ProtectedRoute } from "helper/protectedRoute";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Page } from "./types";
-import Loading from "components/Button/Loading";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import PageChangePassword from "app/(others)/changePassowrd/page";
+import { Page } from "./types";
 
 export const pages: Page[] = [
   { path: "/", component: PageHome },
 
+  { path: "/favorites", component: PageFavorites },
+  { path: "/author/:id", component: PageAuthor },
+  { path: "/archive/:id", component: PageArchive },
+  { path: "/news/*", component: PageSingle },
+
   // archives page -------------------------------------------------------
-  { path: "/archive/*", component: PageArchive },
   { path: "/archive-2/*", component: PageArchiveAudio },
   { path: "/archive-3/*", component: PageArchiveVideo },
-  { path: "/author/*", component: PageAuthor },
 
   // single page -------------------------------------------------------
-  { path: "/single/*", component: PageSingle },
-  { path: "/single-2/*", component: PageSingleTemplate2 },
-  { path: "/single-audio/*", component: PageSingleAudio },
-  { path: "/single-video/*", component: PageSingleVideo },
-  { path: "/single-gallery/*", component: PageSingleGallery },
-  { path: "/single-3/*", component: PageSingleTemplate3 },
-  { path: "/single-4/*", component: PageSingleTemplate4 },
-  { path: "/single-5/*", component: PageSingleTemplate2 },
+  // { path: "/single-2/*", component: PageSingleTemplate2 },
+  // { path: "/single-audio/*", component: PageSingleAudio },
+  // { path: "/single-video/*", component: PageSingleVideo },
+  // { path: "/single-gallery/*", component: PageSingleGallery },
+  // { path: "/single-3/*", component: PageSingleTemplate3 },
+  // { path: "/single-4/*", component: PageSingleTemplate4 },
+  // { path: "/single-5/*", component: PageSingleTemplate2 },
 
   // search -------------------------------------------------------
   { path: "/search", component: PageSearch },
@@ -106,8 +103,6 @@ const MyRoutes = () => {
   }, []);
 
   if (autourCheckLoading || author == undefined) return <Loading />;
-
-  console.log(author);
 
   return (
     <BrowserRouter>

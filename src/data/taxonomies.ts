@@ -2,7 +2,9 @@ import { Route } from "routers/types";
 import __taxonomies from "./jsons/__taxonomies.json";
 import { TaxonomyType } from "./types";
 
-const DEMO_CATEGORIES: TaxonomyType[] = __taxonomies.map((item) => ({
+const DEMO_CATEGORIES: TaxonomyType[] = JSON?.parse(
+  localStorage.getItem("categories") || "[]"
+).map((item: any) => ({
   ...item,
   taxonomy: "category",
   href: item.href as Route,

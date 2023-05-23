@@ -11,7 +11,8 @@ const PageSingle = () => {
 
   const [postData, setPostData] = useState({
     id: "",
-    category: "",
+    categoryId: "",
+    authorId: "",
     postContent: "",
     postExcerpt: "",
     tags: "",
@@ -23,14 +24,17 @@ const PageSingle = () => {
     let categoryParsed = JSON?.parse(
       localStorage.getItem("categories") || "[]"
     );
+    let authorParsed = JSON?.parse(localStorage.getItem("authors") || "[]");
     let findByID = postParsed?.find(
       (item: { id: string | undefined }) => item?.id == params["*"]
     );
+
     setPostData({
       ...findByID,
       category: categoryParsed?.find(
-        (item: { id: any }) => item?.id == findByID?.category
-      )?.name,
+        (item: any) => item?.id == findByID?.categoriesId
+      ),
+      author: authorParsed?.find((item: any) => item?.id == findByID?.authorId),
     });
   }, []);
 

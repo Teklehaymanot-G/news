@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import ModalCategories from "../ModalCategories";
 import ModalTags from "../ModalTags";
 import { DEMO_POSTS } from "data/posts";
@@ -15,13 +15,9 @@ import SectionGridCategoryBox from "components/SectionGridCategoryBox/SectionGri
 import ButtonSecondary from "components/Button/ButtonSecondary";
 import SectionSliderNewAuthors from "components/SectionSliderNewAthors/SectionSliderNewAuthors";
 import Image from "components/Image";
-import { useParams } from "react-router-dom";
+import { LoggedInContext } from "context/loggedInContext";
 
-// Tag and category have same data type - we will use one demo data
-const posts: PostDataType[] = DEMO_POSTS.filter((_, i) => i < 16);
-
-const PageArchive = () => {
-  const params = useParams();
+const PageFavorites = () => {
   const FILTERS = [
     { name: "Most Recent" },
     { name: "Curated by Admin" },
@@ -30,38 +26,26 @@ const PageArchive = () => {
     { name: "Most Viewed" },
   ];
 
-  const [category, setCategory] = useState({
-    id: -1,
-    name: "",
-    taxonomy: "",
-    thumbnail: "",
-    status: "",
-  });
+  const [favoritePost, setFavoritePost] = useState<any[]>([]);
+  const user = useContext(LoggedInContext);
+
   useEffect(() => {
-    let parsed = JSON?.parse(localStorage.getItem("categories") || "[]");
-    setCategory(parsed?.find((item: any) => item?.id == params?.id));
+    let favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+    const posts = JSON.parse(localStorage.getItem("posts") || "[]");
+    favorites = favorites
+      ?.filter((item: any) => item?.userId == user?.author?.id)
+      ?.map((item: any) => item?.postId);
+
+    setFavoritePost(
+      posts?.filter((item: any) => favorites?.includes(item?.id))
+    );
   }, []);
+
+  // Tag and category have same data type - we will use one demo data
+  const posts: any[] = favoritePost;
 
   return (
     <div className={`nc-PageArchive`}>
-      {/* HEADER */}
-      <div className="w-full px-2 xl:max-w-screen-2xl mx-auto">
-        <div className="relative aspect-w-16 aspect-h-13 sm:aspect-h-9 lg:aspect-h-8 xl:aspect-h-5 rounded-3xl md:rounded-[40px] overflow-hidden z-0">
-          <Image
-            alt="archive"
-            fill
-            src={category?.thumbnail}
-            className="object-cover w-full h-full rounded-3xl md:rounded-[40px]"
-            sizes="(max-width: 1280px) 100vw, 1536px"
-          />
-          <div className="absolute inset-0 bg-black text-white bg-opacity-30 flex flex-col items-center justify-center">
-            <h2 className="inline-block align-middle text-5xl font-semibold md:text-7xl ">
-              {category?.name}
-            </h2>
-            {/* <span className="block mt-4 text-neutral-300">115 Articles</span> */}
-          </div>
-        </div>
-      </div>
       {/* ====================== END HEADER ====================== */}
 
       <div className="container pt-10 pb-16 lg:pb-28 lg:pt-20 space-y-16 lg:space-y-28">
@@ -117,4 +101,4 @@ const PageArchive = () => {
   );
 };
 
-export default PageArchive;
+export default PageFavorites;

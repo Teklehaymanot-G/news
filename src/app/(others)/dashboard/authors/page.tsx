@@ -9,18 +9,37 @@ import Input from "components/Input/Input";
 import ButtonSecondary from "components/Button/ButtonSecondary";
 import Textarea from "components/Textarea/Textarea";
 import { toast } from "react-toastify";
+import Select from "components/Select/Select";
 
 const DashboardAuthors = () => {
   const [addAuthor, setAddAuthor] = useState(false);
-  const [profile, setProfile] = useState("");
-  const [fullName, setFullName] = useState("");
+  const [avatar, setAvatar] = useState("");
+  const [bgImage, setBgImage] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
-  const [description, setDescription] = useState("");
+  const [gender, setGender] = useState("");
+  const [desc, setDesc] = useState("");
+  const [jobName, setJobName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const [authorsList, setAuthorsList] = useState([
-    { id: -1, fullName: "", status: "", email: "", profile: "", password: "" },
+    {
+      id: -1,
+      firstName: "",
+      lastName: "",
+      displayName: "",
+      gender: "",
+      desc: "",
+      jobName: "",
+      bgImage: "",
+      status: "",
+      email: "",
+      avatar: "",
+      password: "",
+    },
   ]);
 
   useEffect(() => {
@@ -28,13 +47,11 @@ const DashboardAuthors = () => {
     setAuthorsList(authorsParsed);
   }, []);
 
-  function encodeImageFileAsURL(element: any) {
-    console.log(element.target.files);
+  function encodeImageFileAsURL(element: any, setState: any) {
     var file = element?.target?.files[0];
     var reader = new FileReader();
     reader.onloadend = function () {
-      setProfile(reader?.result?.toString() || "");
-      // console.log("RESULT", reader.result);
+      setState(reader?.result?.toString() || "");
     };
     reader.readAsDataURL(file);
   }
@@ -79,32 +96,73 @@ const DashboardAuthors = () => {
                   <form
                     className="grid md:grid-cols-2 gap-6"
                     onSubmit={() => {
-                      let newData = [
-                        ...authorsList,
-                        {
-                          id: Math?.random(),
-                          fullName,
-                          email,
-                          description,
-                          password,
-                          profile,
-                          status: "Active",
-                          firstTime: true,
-                        },
-                      ];
-                      localStorage.setItem("authors", JSON.stringify(newData));
-                      setAuthorsList(newData);
+                      // let newData = [
+                      //   ...authorsList,
+                      //   {
+                      //     id: Math?.random(),
+                      //     firstName,
+                      //     lastName,
+                      //     displayName,
+                      //     gender,
+                      //     email,
+                      //     desc,
+                      //     jobName,
+                      //     bgImage,
+                      //     password,
+                      //     avatar,
+                      //     status: "Active",
+                      //     firstTime: true,
+                      //   },
+                      // ];
+                      // console.log(newData);
+                      // localStorage.setItem("authors", JSON.stringify(newData));
+                      // setAuthorsList(newData);
                     }}
                   >
                     <label className="block">
-                      <Label>Full name</Label>
+                      <Label>First name</Label>
                       <Input
                         placeholder="Example Doe"
                         type="text"
                         className="mt-1"
-                        value={fullName}
-                        onChange={(e) => setFullName(e.target.value)}
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
                       />
+                    </label>
+                    <label className="block">
+                      <Label>Last name</Label>
+                      <Input
+                        placeholder="Example Doe"
+                        type="text"
+                        className="mt-1"
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
+                      />
+                    </label>
+                    <label className="block">
+                      <Label>Display name</Label>
+                      <Input
+                        placeholder="Example Doe"
+                        type="text"
+                        className="mt-1"
+                        value={displayName}
+                        onChange={(e) => setDisplayName(e.target.value)}
+                      />
+                    </label>
+                    <label className="block">
+                      <Label>Sex</Label>
+
+                      <Select
+                        className="mt-1"
+                        value={gender}
+                        onChange={(e) => {
+                          setGender(e.target.value);
+                        }}
+                      >
+                        <option value="-1">– select –</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                      </Select>
                     </label>
                     <label className="block">
                       <Label> Email address</Label>
@@ -116,14 +174,24 @@ const DashboardAuthors = () => {
                         onChange={(e) => setEmail(e.target.value)}
                       />
                     </label>
+                    <label className="block">
+                      <Label>Job name</Label>
+                      <Input
+                        placeholder="Example Doe"
+                        type="text"
+                        className="mt-1"
+                        value={jobName}
+                        onChange={(e) => setJobName(e.target.value)}
+                      />
+                    </label>
                     <label className="block md:col-span-2">
                       <Label>Description</Label>
 
                       <Textarea
                         className="mt-1"
                         rows={4}
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
+                        value={desc}
+                        onChange={(e) => setDesc(e.target.value)}
                       />
                       <p className="mt-1 text-sm text-neutral-500">
                         Brief description about the author.
@@ -148,7 +216,7 @@ const DashboardAuthors = () => {
                         onChange={(e) => setConfirmPassword(e.target.value)}
                       />
                     </label>
-                    <label className="block md:col-span-2">
+                    <label className="block">
                       <Label>Profile</Label>
 
                       <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-neutral-300 dark:border-neutral-700 border-dashed rounded-md">
@@ -179,7 +247,53 @@ const DashboardAuthors = () => {
                                 accept="image/png, image/gif, image/jpeg"
                                 type="file"
                                 className="sr-only"
-                                onChange={(e) => encodeImageFileAsURL(e)}
+                                onChange={(e) =>
+                                  encodeImageFileAsURL(e, setAvatar)
+                                }
+                              />
+                            </label>
+                            <p className="pl-1">or drag and drop</p>
+                          </div>
+                          <p className="text-xs text-neutral-500">
+                            PNG, JPG, GIF up to 2MB
+                          </p>
+                        </div>
+                      </div>
+                    </label>
+                    <label className="block">
+                      <Label>Background</Label>
+
+                      <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-neutral-300 dark:border-neutral-700 border-dashed rounded-md">
+                        <div className="space-y-1 text-center">
+                          <svg
+                            className="mx-auto h-12 w-12 text-neutral-400"
+                            stroke="currentColor"
+                            fill="none"
+                            viewBox="0 0 48 48"
+                            aria-hidden="true"
+                          >
+                            <path
+                              d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            ></path>
+                          </svg>
+                          <div className="flex flex-col sm:flex-row text-sm text-neutral-6000">
+                            <label
+                              htmlFor="file-upload2"
+                              className="relative cursor-pointer rounded-md font-medium text-primary-6000 hover:text-primary-800 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary-500"
+                            >
+                              <span>Upload a file</span>
+                              <input
+                                id="file-upload2"
+                                name="file-upload2"
+                                accept="image/png, image/gif, image/jpeg"
+                                type="file"
+                                className="sr-only"
+                                onChange={(e) =>
+                                  encodeImageFileAsURL(e, setBgImage)
+                                }
                               />
                             </label>
                             <p className="pl-1">or drag and drop</p>
@@ -198,11 +312,16 @@ const DashboardAuthors = () => {
                           ...authorsList,
                           {
                             id: Math?.random(),
-                            fullName,
+                            firstName,
+                            lastName,
+                            displayName,
+                            gender,
                             email,
-                            description,
+                            desc,
+                            jobName,
+                            bgImage,
                             password,
-                            profile,
+                            avatar,
                             status: "Active",
                             firstTime: true,
                           },
@@ -215,10 +334,15 @@ const DashboardAuthors = () => {
 
                         toast.success("Successfully Added");
                         setAddAuthor(false);
-                        setProfile("");
-                        setFullName("");
+                        setAvatar("");
+                        setBgImage("");
+                        setFirstName("");
+                        setLastName("");
+                        setDisplayName("");
                         setEmail("");
-                        setDescription("");
+                        setGender("");
+                        setDesc("");
+                        setJobName("");
                         setPassword("");
                         setConfirmPassword("");
                       }}
@@ -254,14 +378,14 @@ const DashboardAuthors = () => {
                           <div className="flex items-center w-76 lg:w-auto max-w-md overflow-hidden">
                             <NcImage
                               containerClassName="flex-shrink-0 h-12 w-12 rounded-lg relative z-0 overflow-hidden lg:h-14 lg:w-14"
-                              src={item?.profile}
+                              src={item?.avatar}
                               fill
                               sizes="80px"
                               alt="post"
                             />
                             <div className="ml-4 flex-grow">
                               <h2 className="inline-flex line-clamp-2 text-sm font-semibold  dark:text-neutral-300">
-                                {item?.fullName}
+                                {item?.firstName}
                               </h2>
                             </div>
                           </div>

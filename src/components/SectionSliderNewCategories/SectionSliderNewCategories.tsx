@@ -48,7 +48,9 @@ const SectionSliderNewCategories: FC<SectionSliderNewCategoriesProps> = ({
       <Heading desc={subHeading}>{heading}</Heading>
       <MySlider
         data={categories}
-        renderItem={(item, indx) => renderCard(item, indx)}
+        renderItem={(item, indx) => (
+          <CardCategory3 key={indx} taxonomy={item} />
+        )}
         itemPerRow={itemPerRow}
       />
     </div>

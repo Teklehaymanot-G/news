@@ -8,7 +8,7 @@ export interface SectionSliderNewAuthorsProps {
   className?: string;
   heading: string;
   subHeading: string;
-  authors: PostAuthorType[];
+  authors: any[];
   itemPerRow?: number;
 }
 

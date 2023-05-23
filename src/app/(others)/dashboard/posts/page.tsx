@@ -4,62 +4,9 @@ import Pagination from "components/Pagination/Pagination";
 import Layout from "../../layout";
 import LayoutDashboard from "../layout";
 
-const people = [
-  {
-    id: 1,
-    title: "Tokyo Fashion Week Is Making Itself Great Again",
-    image:
-      "https://images.unsplash.com/photo-1617059063772-34532796cdb5?ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=60",
-    liveStatus: true,
-    payment: "Not Applicable",
-  },
-  {
-    id: 2,
-    title: "Traveling Tends to Magnify All Human Emotions",
-    image:
-      "https://images.unsplash.com/photo-1622987437805-5c6f7c2609d7?ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=60",
-    liveStatus: true,
-    payment: "Not Applicable",
-  },
-  {
-    id: 3,
-    title: "Interior Design: Hexagon is the New Circle in 2018",
-    image:
-      "https://images.unsplash.com/photo-1617201277988-f0efcc14e626?ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxMHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=60",
-    liveStatus: true,
-    payment: "Not Applicable",
-  },
-  {
-    id: 4,
-    title: "Heritage Museums & Gardens to Open with New Landscape",
-    image:
-      "https://images.unsplash.com/photo-1622960748096-1983e5f17824?ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyMHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=60",
-    liveStatus: true,
-    payment: "Not Applicable",
-  },
-  {
-    id: 5,
-    title:
-      "Man agrees to complete $5,000 Hereford Inlet Lighthouse painting job",
-    image:
-      "https://images.unsplash.com/photo-1617202227468-7597afc7046d?ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyNHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=60",
-    liveStatus: false,
-    payment: "Not Applicable",
-  },
-  {
-    id: 6,
-    title:
-      "Denton Corker Marshall the mysterious black box is biennale pavilion",
-    image:
-      "https://images.unsplash.com/photo-1622978147823-33d5e241e976?ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzM3x8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=60",
-    liveStatus: true,
-    payment: "Not Applicable",
-  },
-];
-
 const DashboardPosts = () => {
   const [posts, setPosts] = useState([
-    { id: "", title: "", featureImage: "", liveStatus: true },
+    { id: "", title: "", featuredImage: "", liveStatus: true },
   ]);
 
   useEffect(() => {
@@ -98,7 +45,7 @@ const DashboardPosts = () => {
                             <div className="flex items-center w-96 lg:w-auto max-w-md overflow-hidden">
                               <NcImage
                                 containerClassName="flex-shrink-0 h-12 w-12 rounded-lg relative z-0 overflow-hidden lg:h-14 lg:w-14"
-                                src={item?.featureImage}
+                                src={item?.featuredImage}
                                 fill
                                 sizes="80px"
                                 alt="post"
@@ -123,7 +70,7 @@ const DashboardPosts = () => {
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium text-neutral-300">
                             <a
-                              href={"/single/" + item?.id}
+                              href={"/news/" + item?.id}
                               className="text-primary-800 dark:text-primary-500 hover:text-primary-900"
                             >
                               View

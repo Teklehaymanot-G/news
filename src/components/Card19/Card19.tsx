@@ -25,7 +25,7 @@ const Card19: FC<Card19Props> = ({
   hoverClass = "",
   showCategories = true,
 }) => {
-  const { title, href, featuredImage, categories, postType } = post;
+  const { title, href, featuredImage, categories, postType } = post || {};
 
   const renderMeta = () => {
     return (

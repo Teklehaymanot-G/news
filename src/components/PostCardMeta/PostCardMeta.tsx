@@ -16,23 +16,26 @@ const PostCardMeta: FC<PostCardMetaProps> = ({
   hiddenAvatar = false,
   avatarSize = "h-7 w-7 text-sm",
 }) => {
-  const { date, author } = meta;
+  const { date, author } = meta || {};
 
   return (
     <div
       className={`nc-PostCardMeta inline-flex items-center flex-wrap text-neutral-800 dark:text-neutral-200 ${className}`}
     >
-      <Link href={author.href} className="relative flex items-center space-x-2">
+      <Link
+        href={author?.href}
+        className="relative flex items-center space-x-2"
+      >
         {!hiddenAvatar && (
           <Avatar
             radius="rounded-full"
             sizeClass={avatarSize}
-            imgUrl={author.avatar}
-            userName={author.displayName}
+            imgUrl={author?.avatar}
+            userName={author?.displayName}
           />
         )}
         <span className="block text-neutral-700 hover:text-black dark:text-neutral-300 dark:hover:text-white font-medium">
-          {author.displayName}
+          {author?.displayName}
         </span>
       </Link>
       <>

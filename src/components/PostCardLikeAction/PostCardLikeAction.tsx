@@ -1,4 +1,5 @@
-import React, { FC, useState } from "react";
+import { PostContext } from "context/postContext";
+import React, { FC, useState, useEffect, useContext } from "react";
 import convertNumbThousand from "utils/convertNumbThousand";
 
 export interface PostCardLikeActionProps {
@@ -12,7 +13,32 @@ const PostCardLikeAction: FC<PostCardLikeActionProps> = ({
   likeCount = 34,
   liked = false,
 }) => {
-  const [isLiked, setisLiked] = useState(liked);
+  const [isLiked, setIsLiked] = useState(liked);
+  const [favoriteList, setFavoriteList] = useState<any[]>([]);
+  const [sessionData, setSessionData] = useState({ author: { id: "" } });
+
+  const postData = useContext(PostContext);
+  useEffect(() => {
+    let favoriteParsed = JSON?.parse(localStorage.getItem("favorites") || "[]");
+    let sessionParsed = JSON?.parse(
+      localStorage.getItem("author-session") || "[]"
+    );
+
+    setFavoriteList(favoriteParsed);
+    setSessionData(sessionParsed);
+    // let newData = [...categoryParsed, formState];
+    // localStorage.setItem("categories", JSON.stringify(newData));
+
+    setIsLiked(
+      favoriteList?.filter(
+        (item: any) =>
+          item?.userId == sessionParsed?.author?.id &&
+          item?.postId == postData?.id
+      )?.length > 0
+        ? true
+        : false
+    );
+  }, []);
 
   return (
     <button
@@ -21,7 +47,36 @@ const PostCardLikeAction: FC<PostCardLikeActionProps> = ({
           ? "text-rose-600 bg-rose-50 dark:bg-rose-100"
           : "text-neutral-700 bg-neutral-50 dark:text-neutral-200 dark:bg-neutral-800 hover:bg-rose-50 dark:hover:bg-rose-100 hover:text-rose-600 dark:hover:text-rose-500"
       }`}
-      onClick={() => setisLiked(!isLiked)}
+      onClick={() => {
+        let newData = isLiked
+          ? favoriteList?.filter(
+              (item: any) =>
+                !(
+                  item?.userId == sessionData?.author?.id &&
+                  item?.postId == postData?.id
+                )
+            )
+          : [
+              ...favoriteList,
+              { userId: sessionData?.author?.id, postId: postData?.id },
+            ];
+
+        // console.log(
+        //   favoriteList,
+        //   // sessionData?.author?.id,
+        //   favoriteList?.filter(
+        //     (item: any) =>
+        //       !(
+        //         item?.userId == sessionData?.author?.id &&
+        //         item?.postId != postData?.id
+        //       )
+        //   )
+        // );
+        // return;
+        setFavoriteList(newData);
+        localStorage.setItem("favorites", JSON.stringify(newData));
+        setIsLiked(!isLiked);
+      }}
       title="Liked"
     >
       <svg
@@ -41,13 +96,17 @@ const PostCardLikeAction: FC<PostCardLikeActionProps> = ({
         ></path>
       </svg>
 
-      {likeCount && (
+      {favoriteList?.filter((item: any) => item?.postId == postData?.id)
+        ?.length && (
         <span
           className={`ml-1 ${
             isLiked ? "text-rose-600" : "text-neutral-900 dark:text-neutral-200"
           }`}
         >
-          {convertNumbThousand(likeCount)}
+          {convertNumbThousand(
+            favoriteList?.filter((item: any) => item?.postId == postData?.id)
+              ?.length
+          )}
         </span>
       )}
     </button>

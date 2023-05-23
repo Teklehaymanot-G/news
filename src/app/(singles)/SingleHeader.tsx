@@ -1,7 +1,6 @@
 import CategoryBadgeList from "components/CategoryBadgeList/CategoryBadgeList";
 import PostMeta2 from "components/PostMeta2/PostMeta2";
 import { PostContext } from "context/postContext";
-import { DEMO_CATEGORIES } from "data/taxonomies";
 import { FC, useContext } from "react";
 import SingleMetaAction2 from "./SingleMetaAction2";
 import SingleTitle from "./SingleTitle";
@@ -20,13 +19,14 @@ const SingleHeader: FC<SingleHeaderProps> = ({
 }) => {
   const postData = useContext(PostContext);
 
+  // console.log(postData?.category);
   return (
     <>
       <div className={`nc-SingleHeader ${className}`}>
         <div className="space-y-5">
           <CategoryBadgeList
             itemClass="!px-3"
-            categories={[DEMO_CATEGORIES[1]]}
+            categories={[postData?.category]}
           />
           <SingleTitle mainClass={titleMainClass} title={postData?.title} />
           {!hiddenDesc && (

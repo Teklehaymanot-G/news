@@ -17,7 +17,7 @@ const CardAuthor2: FC<CardAuthor2Props> = ({
   date,
   hoverReadingTime = true,
 }) => {
-  const { displayName, href = "/", avatar } = author;
+  const { displayName, href = "/", avatar } = author || {};
   return (
     <Link
       href={href}
