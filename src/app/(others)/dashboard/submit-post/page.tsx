@@ -10,6 +10,54 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { render } from "@testing-library/react";
 import { Combobox } from "@headlessui/react";
+import Tags from "@yaireo/tagify/dist/react.tagify";
+
+const baseTagifySettings = {
+  blacklist: [],
+  maxTags: 6,
+  backspace: "edit",
+  placeholder: "type something",
+  editTags: 1,
+  dropdown: {
+    enabled: 0,
+  },
+  callbacks: {},
+};
+
+function TagField({ label, name, initialValue = [], suggestions = [] }: any) {
+  const handleChange = (e: any) => {
+    console.log(
+      e.type,
+      " ==> ",
+      e.detail.tagify.value.map((item: any) => item.value)
+    );
+  };
+
+  const settings = {
+    ...baseTagifySettings,
+    whitelist: suggestions,
+    callbacks: {
+      add: handleChange,
+      remove: handleChange,
+      blur: handleChange,
+      edit: handleChange,
+      invalid: handleChange,
+      click: handleChange,
+      focus: handleChange,
+      "edit:updated": handleChange,
+      "edit:start": handleChange,
+    },
+  };
+
+  console.log("InitialValue", initialValue);
+
+  return (
+    <div className="form-group">
+      <label htmlFor={"field-" + name}>{label}</label>
+      <Tags />
+    </div>
+  );
+}
 
 const modules = {
   toolbar: [
@@ -34,6 +82,27 @@ const people = [
   { id: 5, name: "Katelyn Rohan" },
 ];
 
+const tagifySettings = {
+  blacklist: ["xxx", "yyy", "zzz"],
+  maxTags: 6,
+  backspace: "edit",
+  addTagOnBlur: false,
+  dropdown: {
+    enabled: 0, // a;ways show suggestions dropdown
+  },
+};
+
+const whitelistFromServer = [
+  "aaa",
+  "aaa1",
+  "aaa2",
+  "aaa3",
+  "bbb1",
+  "bbb2",
+  "bbb3",
+  "bbb4",
+];
+
 const DashboardSubmitPost = () => {
   const [title, setTitle] = useState("");
   const [postExcerpt, setPostExcerpt] = useState("");
@@ -49,6 +118,31 @@ const DashboardSubmitPost = () => {
   const [categoryList, setCategoryList] = useState([{ id: "", name: "" }]);
   const [authorList, setAuthorList] = useState([{ id: "", displayName: "" }]);
   const [postList, setPostList] = useState([]);
+
+  // function callback(e) {
+  //   console.log(`%c ${e.type}: `, "background: #222; color: #bada55", e.detail);
+  // }
+
+  const settings = {
+    ...tagifySettings,
+    // callbacks: callbacks,
+    // whitelist: whitelist || [],
+  };
+
+  // const callbacks = {
+  //   add: callback,
+  //   remove: callback,
+  //   input: callback,
+  //   edit: callback,
+  //   invalid: callback,
+  //   click: callback,
+  // };
+
+  const [value, showDropdown] = useState({
+    whitelist: whitelistFromServer,
+    showDropdown: "a",
+  });
+
   useEffect(() => {
     let categoryParsed = JSON?.parse(
       localStorage.getItem("categories") || "[]"
@@ -82,6 +176,35 @@ const DashboardSubmitPost = () => {
     };
     reader.readAsDataURL(file);
   }
+
+  const suggestions = [
+    "apple",
+    "banana",
+    "cucumber",
+    "dewberries",
+    "elderberry",
+    "farkleberry",
+    "grapes",
+    "hackberry",
+    "imbe",
+    "jambolan",
+    "kiwi",
+    "lime",
+    "mango",
+    "nectarine",
+    "orange",
+    "papaya",
+    "quince",
+    "raspberries",
+    "strawberries",
+    "tangerine",
+    "ugni",
+    "voavanga",
+    "watermelon",
+    "xigua",
+    "yangmei",
+    "zucchini",
+  ];
 
   return (
     <Layout>
@@ -286,9 +409,15 @@ const DashboardSubmitPost = () => {
               {/* <Textarea className="mt-1" rows={16} /> */}
             </label>
 
+            <Tags />
+
             <ButtonPrimary className="md:col-span-2 mt-7" type="submit">
               Submit post
             </ButtonPrimary>
+            <TagField
+              initialValue={["foo", "brazil"]}
+              suggestions={suggestions}
+            />
           </form>
         </div>
       </LayoutDashboard>

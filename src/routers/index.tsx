@@ -119,7 +119,7 @@ const MyRoutes = () => {
             return <Route key={index} element={<Component />} path={path} />;
           })}
         </Route>
-        <Route element={<Page404 />} />
+        <Route path="*" element={<Page404 />} />
       </Routes>
 
       <Footer />
