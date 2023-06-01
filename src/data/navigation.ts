@@ -8,7 +8,7 @@ export const NAVIGATION_DEMO_2: NavItemType[] = [
   {
     id: randomId(),
     href: "/",
-    name: "Home",
+    name: "መነሻ ገጽ",
   },
 
   // single pages ----------------
@@ -62,17 +62,23 @@ export const NAVIGATION_DEMO_2: NavItemType[] = [
   {
     id: randomId(),
     href: "/favorites" as Route,
-    name: "Favorites",
+    name: "ድንቃድንቅ",
   },
   {
     id: randomId(),
-    href: "/archive/demo-slug" as Route,
-    name: "Beauty",
+    href: "/competition" as Route,
+    name: "ታሪክ",
+  },
+
+  {
+    id: randomId(),
+    href: "/competition" as Route,
+    name: "ጥያቄ እና መልስ",
   },
 
   {
     id: randomId(),
     href: "/archive/demo-slug" as Route,
-    name: "Sport",
+    name: "ስፖርት",
   },
 ];

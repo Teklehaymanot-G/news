@@ -199,7 +199,7 @@ const PageSearch = () => {
           {/* PAGINATION */}
           <div className="flex flex-col mt-12 lg:mt-16 space-y-5 sm:space-y-0 sm:space-x-3 sm:flex-row sm:justify-between sm:items-center">
             <Pagination />
-            <ButtonPrimary>Show me more</ButtonPrimary>
+            <ButtonPrimary>ተጨማሪ አሳየኝ</ButtonPrimary>
           </div>
         </main>
 
@@ -217,8 +217,8 @@ const PageSearch = () => {
 
         {/* === SECTION 5 === */}
         <SectionSliderNewAuthors
-          heading="Top elite authors"
-          subHeading="Discover our elite writers"
+          heading="ምርጥ ደራሲዎች"
+          subHeading="የኛን ምርጥ ጸሃፊዎችን ያግኙ"
           authors={DEMO_AUTHORS.filter((_, i) => i < 10)}
         />
 

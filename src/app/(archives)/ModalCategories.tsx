@@ -30,7 +30,7 @@ const ModalCategories: FC<ModalCategoriesProps> = ({ categories }) => {
             onClick={openModal}
           >
             <div>
-              <span className="hidden sm:inline">Other</span> Categories
+              <span className="hidden sm:inline">ሌሎች</span> ምድቦች
             </div>
             <ChevronDownIcon
               className="w-4 h-4 ml-2 -mr-1"
@@ -38,7 +38,7 @@ const ModalCategories: FC<ModalCategoriesProps> = ({ categories }) => {
             />
           </Button>
         )}
-        modalTitle="Discover other categories"
+        modalTitle="ሌሎች ምድቦችን ያግኙ"
         renderContent={renderModalContent}
       />
     </div>

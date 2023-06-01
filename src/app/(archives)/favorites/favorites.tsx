@@ -19,11 +19,10 @@ import { LoggedInContext } from "context/loggedInContext";
 
 const PageFavorites = () => {
   const FILTERS = [
-    { name: "Most Recent" },
-    { name: "Curated by Admin" },
-    { name: "Most Appreciated" },
-    { name: "Most Discussed" },
-    { name: "Most Viewed" },
+    { name: "በጣም ቅርብ ጊዜ" },
+    { name: "በእኛ የተመረጡ" },
+    { name: "በጣም የተወደዱ" },
+    { name: "በብዛት የታዩ" },
   ];
 
   const [favoritePost, setFavoritePost] = useState<any[]>([]);
@@ -71,7 +70,7 @@ const PageFavorites = () => {
           {/* PAGINATIONS */}
           <div className="flex flex-col mt-12 lg:mt-16 space-y-5 sm:space-y-0 sm:space-x-3 sm:flex-row sm:justify-between sm:items-center">
             <Pagination />
-            <ButtonPrimary>Show me more</ButtonPrimary>
+            <ButtonPrimary>ተጨማሪ አሳየኝ</ButtonPrimary>
           </div>
         </div>
 
@@ -83,14 +82,14 @@ const PageFavorites = () => {
             categories={DEMO_CATEGORIES.filter((_, i) => i < 10)}
           />
           <div className="text-center mx-auto mt-10 md:mt-16">
-            <ButtonSecondary loading>Show me more</ButtonSecondary>
+            <ButtonSecondary loading>ተጨማሪ አሳየኝ</ButtonSecondary>
           </div>
         </div>
 
         {/* === SECTION 5 === */}
         <SectionSliderNewAuthors
-          heading="Top elite authors"
-          subHeading="Discover our elite writers"
+          heading="ምርጥ ደራሲዎች"
+          subHeading="የኛን ምርጥ ጸሃፊዎችን ያግኙ"
           authors={DEMO_AUTHORS.filter((_, i) => i < 10)}
         />
 

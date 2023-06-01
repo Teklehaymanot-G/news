@@ -8,7 +8,7 @@ export interface SectionMagazine3Props extends SectionMagazine1Props {}
 
 const SectionMagazine3: FC<SectionMagazine3Props> = ({
   posts,
-  heading = "Latest Articles 🎈 ",
+  heading = "የቅርብ ጊዜ መጣጥፎች 🎈 ",
   className = "",
 }) => {
   return (

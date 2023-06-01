@@ -16,11 +16,10 @@ import Card10V2 from "components/Card10/Card10V2";
 
 const PageArchiveVideo = () => {
   const FILTERS = [
-    { name: "Most Recent" },
-    { name: "Curated by Admin" },
-    { name: "Most Appreciated" },
-    { name: "Most Discussed" },
-    { name: "Most Viewed" },
+    { name: "በጣም ቅርብ ጊዜ" },
+    { name: "በእኛ የተመረጡ" },
+    { name: "በጣም የተወደዱ" },
+    { name: "በብዛት የታዩ" },
   ];
 
   return (
@@ -54,7 +53,7 @@ const PageArchiveVideo = () => {
           {/* PAGINATIONS */}
           <div className="flex flex-col mt-12 lg:mt-16 space-y-5 sm:space-y-0 sm:space-x-3 sm:flex-row sm:justify-between sm:items-center">
             <Pagination />
-            <ButtonPrimary>Show me more</ButtonPrimary>
+            <ButtonPrimary>ተጨማሪ አሳየኝ</ButtonPrimary>
           </div>
         </div>
       </div>
@@ -63,8 +62,8 @@ const PageArchiveVideo = () => {
         {/* MORE SECTIONS */}
         {/* === SECTION 5 === */}
         <SectionSliderNewAuthors
-          heading="Top elite authors"
-          subHeading="Discover our elite writers"
+          heading="ምርጥ ደራሲዎች"
+          subHeading="የኛን ምርጥ ጸሃፊዎችን ያግኙ"
           authors={DEMO_AUTHORS.filter((_, i) => i < 10)}
         />
 

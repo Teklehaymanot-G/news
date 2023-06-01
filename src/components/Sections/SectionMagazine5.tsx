@@ -11,7 +11,7 @@ export interface SectionMagazine5Props {
 
 const SectionMagazine5: FC<SectionMagazine5Props> = ({
   posts,
-  heading = "Latest Articles 🎈 ",
+  heading = "የቅርብ ጊዜ መጣጥፎች 🎈 ",
 }) => {
   return (
     <div className="nc-SectionMagazine5">

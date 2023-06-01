@@ -33,6 +33,9 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Page } from "./types";
+import PageCompetition from "app/(archives)/compitition/compitition";
+import { LoggedInContext } from "context/loggedInContext";
+import PageSingleAudio from "app/(singles)/(default)/single-audio/page";
 
 export const pages: Page[] = [
   { path: "/", component: PageHome },
@@ -48,6 +51,7 @@ export const pages: Page[] = [
 
   // single page -------------------------------------------------------
   // { path: "/single-2/*", component: PageSingleTemplate2 },
+  { path: "/audio/*", component: PageSingleAudio },
   // { path: "/single-audio/*", component: PageSingleAudio },
   // { path: "/single-video/*", component: PageSingleVideo },
   // { path: "/single-gallery/*", component: PageSingleGallery },
@@ -115,11 +119,16 @@ const MyRoutes = () => {
         <Route path="/login" element={<PageLogin />} />
         <Route path="/dashboard/authors" element={<DashboardAuthors />} />
 
+        {/* <LoggedInContext.Provider value={author}> */}
+        {pages.map(({ component: Component, path }, index) => {
+          return <Route key={index} element={<Component />} path={path} />;
+        })}
+        {/* </LoggedInContext.Provider> */}
+
         <Route element={<ProtectedRoute author={author} />}>
-          {pages.map(({ component: Component, path }, index) => {
-            return <Route key={index} element={<Component />} path={path} />;
-          })}
+          <Route path="/competition" element={<PageCompetition />} />
         </Route>
+
         <Route path="*" element={<Page404 />} />
       </Routes>
 

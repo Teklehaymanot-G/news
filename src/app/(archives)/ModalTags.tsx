@@ -31,7 +31,7 @@ const ModalTags: FC<ModalTagsProps> = ({ tags }) => {
             onClick={openModal}
           >
             <div>
-              <span className="hidden sm:inline">Other</span> Tags
+              <span className="hidden sm:inline">ሌሎች</span> መለያዎች
             </div>
             <ChevronDownIcon
               className="w-4 h-4 ml-2 -mr-1"
@@ -39,7 +39,7 @@ const ModalTags: FC<ModalTagsProps> = ({ tags }) => {
             />
           </Button>
         )}
-        modalTitle="Discover other tags"
+        modalTitle="ሌሎች መለያዎችን ያግኙ"
         renderContent={renderModalContent}
       />
     </div>
