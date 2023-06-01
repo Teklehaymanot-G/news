@@ -84,25 +84,26 @@ const MyRoutes = () => {
   const [autourCheckLoading, setAutourCheckLoading] = useState(true);
 
   useEffect(() => {
-    let checkToken = async () => {
-      let authorsParsed = await JSON.parse(
-        localStorage.getItem("author-session") || "{}"
-      );
-      // console.log(authorsParsed);
-      setAuthor(authorsParsed);
-    };
-    checkToken();
+    // let checkToken = async () => {
+    //   let authorsParsed = await JSON.parse(
+    //     localStorage.getItem("author-session") || "{}"
+    //   );
+    //   // console.log(authorsParsed);
+    //   setAuthor(authorsParsed);
+    // };
+    // checkToken();
 
-    // let autourParsed = JSON.parse(
-    //   localStorage.getItem("author-session") || "{}"
-    // );
-    // console.log(authorsParsed);
-    // setAuthor(authorsParsed);
+    let autourParsed = JSON.parse(
+      localStorage.getItem("author-session") || "{}"
+    );
+    // console.log(autourParsed);
+    setAuthor(autourParsed);
 
     setAutourCheckLoading(false);
   }, []);
 
-  if (autourCheckLoading || author == undefined) return <Loading />;
+  if (autourCheckLoading || author == undefined || author == null)
+    return <Loading />;
 
   return (
     <BrowserRouter>

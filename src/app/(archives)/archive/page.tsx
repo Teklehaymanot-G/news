@@ -18,7 +18,7 @@ import Image from "components/Image";
 import { useParams } from "react-router-dom";
 
 // Tag and category have same data type - we will use one demo data
-const posts: PostDataType[] = DEMO_POSTS.filter((_, i) => i < 16);
+const posts: PostDataType[] = DEMO_POSTS.filter((_: any, i: any) => i < 16);
 
 const PageArchive = () => {
   const params = useParams();

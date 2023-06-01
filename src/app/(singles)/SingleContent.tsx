@@ -77,11 +77,11 @@ const SingleContent: FC<SingleContentProps> = () => {
         </div>
 
         {/* TAGS */}
-        <div className="max-w-screen-md mx-auto flex flex-wrap">
+        {/* <div className="max-w-screen-md mx-auto flex flex-wrap">
           {demoTags.map((item) => (
             <Tag hideCount key={item.id} tag={item} className="mr-2 mb-2" />
           ))}
-        </div>
+        </div> */}
 
         {/* AUTHOR */}
         <div className="max-w-screen-md mx-auto border-b border-t border-neutral-100 dark:border-neutral-700"></div>
@@ -95,7 +95,7 @@ const SingleContent: FC<SingleContentProps> = () => {
         }`}
       >
         <div className="bg-white dark:bg-neutral-800 shadow-lg rounded-full ring-1 ring-offset-1 ring-neutral-900/5 p-1.5 flex items-center justify-center space-x-2 text-xs">
-          <PostCardLikeAction className="px-3 h-9 text-xs" />
+          <PostCardLikeAction className="px-3 h-9 text-xs" post={null} />
           <div className="border-l h-4 border-neutral-200 dark:border-neutral-700"></div>
           <PostCardCommentBtn
             isATagOnSingle

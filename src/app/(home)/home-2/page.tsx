@@ -20,8 +20,8 @@ import SectionMagazine4 from "components/Sections/SectionMagazine4";
 const POSTS = DEMO_POSTS;
 
 // DEMO POST FOR MAGAZINE SECTION
-const MAGAZINE1_POSTS = POSTS.filter((_, i) => i >= 0 && i < 8);
-const MAGAZINE2_POSTS = DEMO_POSTS.filter((_, i) => i >= 0 && i < 7);
+const MAGAZINE1_POSTS = POSTS.filter((_: any, i: any) => i >= 0 && i < 8);
+const MAGAZINE2_POSTS = DEMO_POSTS.filter((_: any, i: any) => i >= 0 && i < 7);
 //
 
 const PageHomeDemo2: React.FC = () => {
@@ -44,7 +44,7 @@ const PageHomeDemo2: React.FC = () => {
             postCardName="card7"
             heading="Sea travel enthusiast"
             subHeading="Over 218 articles about sea travel"
-            posts={POSTS.filter((_, i) => i < 8)}
+            posts={POSTS.filter((_: any, i: any) => i < 8)}
           />
         </div>
 
@@ -89,7 +89,7 @@ const PageHomeDemo2: React.FC = () => {
             postCardName="card9"
             heading="Sea travel enthusiast"
             subHeading="Over 218 articles about sea travel"
-            posts={POSTS.filter((_, i) => i < 8)}
+            posts={POSTS.filter((_: any, i: any) => i < 8)}
           />
         </div>
 
@@ -99,7 +99,7 @@ const PageHomeDemo2: React.FC = () => {
           className="pb-16 lg:pb-28"
           postCardName="card14"
           gridClass="sm:grid-cols-2"
-          posts={DEMO_POSTS.filter((_, i) => i >= 2 && i < 12)}
+          posts={DEMO_POSTS.filter((_: any, i: any) => i >= 2 && i < 12)}
         />
       </div>
     </div>

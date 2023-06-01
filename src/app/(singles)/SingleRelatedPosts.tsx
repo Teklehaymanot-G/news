@@ -14,7 +14,7 @@ export interface SingleRelatedPostsProps {
 
 // DEMO DATA
 let demoRelated: PostDataType[] = DEMO_POSTS.filter(
-  (_, i) => i >= 10 && i < 14
+  (_: any, i: any) => i >= 10 && i < 14
 );
 // make different href demo, for user can click
 // demoRelated = demoRelated.map((item, index) => ({
@@ -23,7 +23,7 @@ let demoRelated: PostDataType[] = DEMO_POSTS.filter(
 // }));
 
 let demoMoreFromAuthor: PostDataType[] = DEMO_POSTS.filter(
-  (_, i) => i >= 14 && i < 18
+  (_: any, i: any) => i >= 14 && i < 18
 );
 // make different href demo, for user can click
 demoMoreFromAuthor = demoMoreFromAuthor.map((item, index) => ({
@@ -34,12 +34,18 @@ demoMoreFromAuthor = demoMoreFromAuthor.map((item, index) => ({
 const SingleRelatedPosts: any = () => {
   const postData = useContext(PostContext);
   const posts = JSON.parse(localStorage?.getItem("posts") || "[]");
-  const relatedPosts = posts?.filter(
-    (item: any) => item?.categoriesId == postData?.categoriesId
-  );
-  const moreFromAuthorPosts = posts?.filter(
-    (item: any) => item?.authorId == postData?.authorId
-  );
+  const relatedPosts = posts
+    ?.filter((item: any) => item?.categoriesId == postData?.categoriesId)
+    ?.map((item: any) => ({
+      ...item,
+      author: postData?.author,
+    }));
+  const moreFromAuthorPosts = posts
+    ?.filter((item: any) => item?.authorId == postData?.authorId)
+    ?.map((item: any) => ({
+      ...item,
+      author: postData?.author,
+    }));
 
   return (
     <div className="relative bg-neutral-100 dark:bg-neutral-800 py-16 lg:py-28 mt-16 lg:mt-28">

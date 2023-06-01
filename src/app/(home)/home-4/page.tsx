@@ -89,7 +89,7 @@ const PageHomeDemo4: React.FC = () => {
             <SectionTrending
               heading=""
               className="py-16 lg:py-28"
-              posts={DEMO_POSTS.filter((_, i) => i < 8)}
+              posts={DEMO_POSTS.filter((_: any, i: any) => i < 8)}
             />
             <div className="relative py-16">
               <BackgroundSection />
@@ -145,7 +145,7 @@ const PageHomeDemo4: React.FC = () => {
                 postCardName="card11"
                 heading="Explore other latest articles"
                 subHeading="Explore 1129 other articles"
-                posts={DEMO_POSTS.filter((_, i) => i > 5 && i < 18)}
+                posts={DEMO_POSTS.filter((_: any, i: any) => i > 5 && i < 18)}
                 gridClass="sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8"
               />
             </div>

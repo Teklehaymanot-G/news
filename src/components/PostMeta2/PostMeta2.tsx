@@ -24,7 +24,7 @@ const PostMeta2: FC<PostMeta2Props> = ({
 }) => {
   const { date, author, categories, readingTime } = meta || {};
   const postData = useContext(PostContext);
-
+  console.log(author);
   return (
     <div
       className={`nc-PostMeta2 flex items-center flex-wrap text-neutral-700 text-left dark:text-neutral-200 ${
@@ -42,13 +42,13 @@ const PostMeta2: FC<PostMeta2Props> = ({
               ? "h-6 w-6 text-sm"
               : "h-10 w-10 sm:h-11 sm:w-11 text-xl"
           }
-          imgUrl={postData?.author?.avatar}
+          imgUrl={author?.avatar}
           userName={postData?.author?.displayName}
         />
       </Link>
       <div className="ml-3">
         <div className="flex items-center">
-          <Link href={author?.href} className="block font-semibold">
+          <Link href={author?.href || ""} className="block font-semibold">
             {postData?.author?.displayName}
           </Link>
 
@@ -57,7 +57,7 @@ const PostMeta2: FC<PostMeta2Props> = ({
               <span className="mx-2 font-semibold">·</span>
               <div className="ml-0">
                 <span className="text-xs">🏷 </span>
-                {categories.map((cat, index) => (
+                {categories?.map((cat: any, index: any) => (
                   <Link key={cat.id} href={cat?.href} className="font-semibold">
                     {cat?.name}
                     {index < categories.length - 1 && <span>, </span>}

@@ -23,7 +23,7 @@ import Tag from "components/Tag/Tag";
 import CardAuthorBox2 from "components/CardAuthorBox2/CardAuthorBox2";
 import { ArrowSmallRightIcon } from "@heroicons/react/24/outline";
 
-const posts: PostDataType[] = DEMO_POSTS.filter((_, i) => i < 12);
+const posts: PostDataType[] = DEMO_POSTS.filter((_: any, i: any) => i < 12);
 const cats = DEMO_CATEGORIES.filter((_, i) => i < 15);
 const tags = DEMO_CATEGORIES.filter((_, i) => i < 32);
 const authors = DEMO_AUTHORS.filter((_, i) => i < 12);

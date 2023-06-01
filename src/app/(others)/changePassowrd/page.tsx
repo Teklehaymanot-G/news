@@ -55,7 +55,7 @@ const PageChangePassword = () => {
           </label>
           <ButtonPrimary
             type="button"
-            onClick={() => {
+            onClick={async () => {
               if (newPassword !== confirm) {
                 navigate("/");
 
@@ -87,7 +87,7 @@ const PageChangePassword = () => {
                 ])
               );
 
-              localStorage.setItem(
+              await localStorage.setItem(
                 "author-session",
                 JSON.stringify({
                   author: loggedIn.author,
@@ -96,7 +96,7 @@ const PageChangePassword = () => {
               );
 
               // setLogged(true);
-              <Navigate to="/" />;
+              // <Navigate to="/" />;
               navigate("/");
               toast.success("Successfully Changed");
             }}

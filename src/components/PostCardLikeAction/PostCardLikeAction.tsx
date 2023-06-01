@@ -6,18 +6,20 @@ export interface PostCardLikeActionProps {
   className?: string;
   likeCount?: number;
   liked?: boolean;
+  post?: any;
 }
 
 const PostCardLikeAction: FC<PostCardLikeActionProps> = ({
   className = "px-3 h-8 text-xs",
   likeCount = 34,
   liked = false,
+  post = {},
 }) => {
   const [isLiked, setIsLiked] = useState(liked);
   const [favoriteList, setFavoriteList] = useState<any[]>([]);
   const [sessionData, setSessionData] = useState({ author: { id: "" } });
 
-  const postData = useContext(PostContext);
+  // const postData = useContext(PostContext);
   useEffect(() => {
     let favoriteParsed = JSON?.parse(localStorage.getItem("favorites") || "[]");
     let sessionParsed = JSON?.parse(
@@ -32,8 +34,7 @@ const PostCardLikeAction: FC<PostCardLikeActionProps> = ({
     setIsLiked(
       favoriteList?.filter(
         (item: any) =>
-          item?.userId == sessionParsed?.author?.id &&
-          item?.postId == postData?.id
+          item?.userId == sessionParsed?.author?.id && item?.postId == post?.id
       )?.length > 0
         ? true
         : false
@@ -53,12 +54,12 @@ const PostCardLikeAction: FC<PostCardLikeActionProps> = ({
               (item: any) =>
                 !(
                   item?.userId == sessionData?.author?.id &&
-                  item?.postId == postData?.id
+                  item?.postId == post?.id
                 )
             )
           : [
               ...favoriteList,
-              { userId: sessionData?.author?.id, postId: postData?.id },
+              { userId: sessionData?.author?.id, postId: post?.id },
             ];
 
         // console.log(
@@ -96,7 +97,7 @@ const PostCardLikeAction: FC<PostCardLikeActionProps> = ({
         ></path>
       </svg>
 
-      {favoriteList?.filter((item: any) => item?.postId == postData?.id)
+      {favoriteList?.filter((item: any) => item?.postId == post?.id)
         ?.length && (
         <span
           className={`ml-1 ${
@@ -104,7 +105,7 @@ const PostCardLikeAction: FC<PostCardLikeActionProps> = ({
           }`}
         >
           {convertNumbThousand(
-            favoriteList?.filter((item: any) => item?.postId == postData?.id)
+            favoriteList?.filter((item: any) => item?.postId == post?.id)
               ?.length
           )}
         </span>

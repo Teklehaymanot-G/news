@@ -18,7 +18,9 @@ import Card14 from "components/Card14/Card14";
 
 // THIS IS DEMO FOR MAIN DEMO
 // OTHER DEMO WILL PASS PROPS
-const postsDemo: PostDataType[] = DEMO_POSTS.filter((_, i) => i > 7 && i < 15);
+const postsDemo: PostDataType[] = DEMO_POSTS.filter(
+  (_: any, i: any) => i > 7 && i < 15
+);
 //
 export interface SectionLatestPostsProps {
   posts?: PostDataType[];

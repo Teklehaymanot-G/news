@@ -73,7 +73,7 @@ const PageLogin = () => {
           </label>
           <ButtonPrimary
             type="button"
-            onClick={() => {
+            onClick={async () => {
               let authorsParsed = JSON.parse(
                 localStorage.getItem("authors") || "[]"
               );

@@ -39,7 +39,7 @@ const PageFavorites = () => {
     setFavoritePost(
       posts?.filter((item: any) => favorites?.includes(item?.id))
     );
-  }, []);
+  }, [user]);
 
   // Tag and category have same data type - we will use one demo data
   const posts: any[] = favoritePost;

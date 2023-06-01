@@ -21,7 +21,7 @@ import SectionLatestPosts from "components/Sections/SectionLatestPosts";
 
 // DEMO DATA
 const POSTS = DEMO_POSTS;
-const MAGAZINE1_POSTS = POSTS.filter((_, i) => i >= 0 && i < 8);
+const MAGAZINE1_POSTS = POSTS.filter((_: any, i: any) => i >= 0 && i < 8);
 //
 
 const PageHomeDemo3: React.FC = () => {
@@ -64,7 +64,7 @@ const PageHomeDemo3: React.FC = () => {
           postCardName="card10"
           heading="Sea travel enthusiast"
           subHeading="Over 218 articles about sea travel"
-          posts={POSTS.filter((_, i) => i < 8)}
+          posts={POSTS.filter((_: any, i: any) => i < 8)}
         />
 
         <SectionAds />
@@ -95,7 +95,7 @@ const PageHomeDemo3: React.FC = () => {
         <SectionBecomeAnAuthor className="py-16 lg:py-28" />
 
         <SectionLatestPosts
-          posts={DEMO_POSTS.filter((_, i) => i > 7 && i < 16)}
+          posts={DEMO_POSTS.filter((_: any, i: any) => i > 7 && i < 16)}
           postCardName="card7"
           gridClass="sm:grid-cols-2"
           className="pb-16 lg:pb-28"

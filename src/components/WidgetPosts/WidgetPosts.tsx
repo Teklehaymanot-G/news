@@ -5,7 +5,7 @@ import { PostDataType } from "data/types";
 import React, { FC } from "react";
 
 const widgetPostsDemo: PostDataType[] = DEMO_POSTS.filter(
-  (_, i) => i > 2 && i < 7
+  (_: any, i: any) => i > 2 && i < 7
 );
 
 export interface WidgetPostsProps {

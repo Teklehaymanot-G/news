@@ -11,7 +11,7 @@ import PostCardMeta from "../PostCardMeta/PostCardMeta";
 
 export interface Card2Props {
   className?: string;
-  post: PostDataType;
+  post: any;
   size?: "normal" | "large";
 }
 
@@ -20,8 +20,15 @@ const Card2: FC<Card2Props> = ({
   size = "normal",
   post,
 }) => {
-  const { title, href, readingTime, featuredImage, categories, postType } =
-    post;
+  const {
+    title,
+    href = "/news/" + post?.id,
+    postExcerpt,
+    readingTime,
+    featuredImage,
+    categories,
+    postType,
+  } = post;
 
   return (
     <div className={`nc-Card2 group relative flex flex-col ${className}`}>
@@ -62,19 +69,24 @@ const Card2: FC<Card2Props> = ({
               size === "large" ? "text-base sm:text-lg md:text-xl" : "text-base"
             }`}
           >
-            <Link href={href} className="line-clamp-2" title={title}>
+            <Link
+              href={"/news/" + post?.id}
+              className="line-clamp-2"
+              title={title}
+            >
               {title}
             </Link>
           </h2>
           <span className="block text-neutral-500 dark:text-neutral-400 text-[15px] leading-6 ">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione
+            {/* Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione
             beatae quasi et, reprehenderit alias veritatis nostrum iste sed
-            laboriosam eveniet possimus.
+            laboriosam eveniet possimus. */}
+            {postExcerpt}
           </span>
         </div>
         <div className="my-5 border-t border-neutral-200 dark:border-neutral-700"></div>
         <div className="flex items-center justify-between">
-          <PostCardLikeAndComment className="relative" />
+          <PostCardLikeAndComment className="relative" post={post} />
           <PostCardSaveAction className="relative" readingTime={readingTime} />
         </div>
       </div>

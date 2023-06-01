@@ -9,19 +9,20 @@ import { DEMO_POSTS, DEMO_POSTS_AUDIO } from "data/posts";
 import { DEMO_CATEGORIES } from "data/taxonomies";
 
 //
-const MAGAZINE1_POSTS = DEMO_POSTS.filter((_, i) => i >= 8 && i < 16);
-const MAGAZINE2_POSTS = DEMO_POSTS.filter((_, i) => i >= 0 && i < 7);
+const MAGAZINE1_POSTS = DEMO_POSTS;
+// const MAGAZINE1_POSTS = DEMO_POSTS.filter((_: any, i: any) => i >= 8 && i < 16);
+const MAGAZINE2_POSTS = DEMO_POSTS.filter((_: any, i: any) => i >= 0 && i < 7);
 //
 
 const PageHome = () => {
-  console.log(DEMO_CATEGORIES.filter((_, i) => i < 10));
+  // console.log(MAGAZINE1_POSTS);
 
   return (
     <div className="nc-PageHome relative">
       <div className="container relative">
         <SectionLargeSlider
           className="pt-10 pb-16 md:py-16 lg:pb-28 lg:pt-20"
-          posts={DEMO_POSTS?.filter((_, i) => i < 3)}
+          posts={DEMO_POSTS?.filter((_: any, i: any) => i < 3)}
         />
 
         <div className="relative py-16">

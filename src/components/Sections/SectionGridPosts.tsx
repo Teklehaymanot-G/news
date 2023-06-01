@@ -14,7 +14,9 @@ import Card10V2 from "components/Card10/Card10V2";
 import Card15Podcast from "components/Card15Podcast/Card15Podcast";
 
 // OTHER DEMO WILL PASS PROPS
-const postsDemo: PostDataType[] = DEMO_POSTS.filter((_, i) => i > 7 && i < 17);
+const postsDemo: PostDataType[] = DEMO_POSTS.filter(
+  (_: any, i: any) => i > 7 && i < 17
+);
 
 //
 export interface SectionGridPostsProps {

@@ -114,7 +114,7 @@ const PlayerContent: FC<PlayerContentProps> = ({
           </div>
         </Link>
         <div className="hidden xl:flex flex-shrink-0 px-6 space-x-2.5">
-          <PostCardLikeAction />
+          <PostCardLikeAction post={post} />
           <NcBookmark />
         </div>
       </div>

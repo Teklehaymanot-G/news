@@ -33,7 +33,7 @@ const Card6: FC<Card6Props> = ({ className = "h-full", post }) => {
           <PostCardMeta meta={{ ...post }} />
         </div>
         <div className="flex items-center flex-wrap justify-between mt-auto">
-          <PostCardLikeAndComment className="relative" />
+          <PostCardLikeAndComment className="relative" post={post} />
           <PostCardSaveAction className="relative" readingTime={readingTime} />
         </div>
       </div>

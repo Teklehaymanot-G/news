@@ -23,7 +23,7 @@ const Card11: FC<Card11Props> = ({
   const { title, href, categories, date } = post;
 
   const [isHover, setIsHover] = useState(false);
-
+  console.log(post);
   return (
     <div
       className={`nc-Card11 relative flex flex-col group rounded-3xl overflow-hidden bg-white dark:bg-neutral-900 ${className}`}
@@ -55,7 +55,7 @@ const Card11: FC<Card11Props> = ({
           </span>
         </h3>
         <div className="flex items-end justify-between mt-auto">
-          <PostCardLikeAndComment className="relative" />
+          <PostCardLikeAndComment className="relative" post={post} />
           <PostCardSaveAction className="relative" />
         </div>
       </div>

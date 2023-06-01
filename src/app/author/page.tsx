@@ -26,7 +26,7 @@ import AccountActionDropdown from "components/AccountActionDropdown/AccountActio
 import Image from "components/Image";
 import { useParams } from "react-router-dom";
 
-const posts: PostDataType[] = DEMO_POSTS.filter((_, i) => i < 12);
+const posts: PostDataType[] = DEMO_POSTS.filter((_: any, i: any) => i < 12);
 const FILTERS = [
   { name: "Most Recent" },
   { name: "Curated by Admin" },

@@ -68,7 +68,8 @@ const DashboardAuthors = () => {
                     className="flex w-10 h-10 sm:w-12 sm:h-12 rounded-full text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none items-center justify-center"
                     onClick={() => setAddAuthor(!addAuthor)}
                   >
-                    <svg
+                    +
+                    {/* <svg
                       width={22}
                       height={22}
                       viewBox="0 0 24 24"
@@ -89,7 +90,7 @@ const DashboardAuthors = () => {
                         strokeLinecap="round"
                         strokeLinejoin="round"
                       />
-                    </svg>
+                    </svg> */}
                   </button>
                 </div>
                 {addAuthor && (

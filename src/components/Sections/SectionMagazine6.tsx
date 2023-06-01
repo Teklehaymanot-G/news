@@ -7,7 +7,7 @@ import Image from "components/Image";
 import { DEMO_POSTS } from "data/posts";
 import { Link } from "react-router-dom";
 
-const MAGAZINE1_POSTS = DEMO_POSTS.filter((_, i) => i >= 8 && i < 16);
+const MAGAZINE1_POSTS = DEMO_POSTS.filter((_: any, i: any) => i >= 8 && i < 16);
 
 export interface SectionMagazine6Props {
   posts?: PostDataType[];
@@ -23,7 +23,7 @@ const SectionMagazine6: FC<SectionMagazine6Props> = ({
   const renderMain = () => {
     const { featuredImage, author, title, date, desc, href, readingTime } =
       posts[0];
-    const subPosts = posts.filter((_, i) => i > 0);
+    const subPosts = posts.filter((_: any, i: any) => i > 0);
     return (
       <main className="relative">
         {/* Image */}
@@ -66,7 +66,7 @@ const SectionMagazine6: FC<SectionMagazine6Props> = ({
         <div className="md:absolute mt-5 md:mt-0 h-96 md:h-auto md:right-3 md:top-3 md:bottom-3 md:w-1/2 lg:w-1/3 p-5 lg:p-8 bg-neutral-100 md:bg-white md:dark:bg-neutral-900 dark:bg-neutral-800 xl:bg-opacity-80 xl:dark:bg-opacity-80 xl:backdrop-filter xl:backdrop-blur-xl rounded-3xl lg:rounded-[34px] overflow-hidden">
           <div className="flow-root h-full w-full overflow-y-auto hiddenScrollbar">
             <div className="-my-5 md:-my-7 divide-y divide-neutral-200 dark:divide-neutral-700">
-              {subPosts.map((post, i) => (
+              {subPosts.map((post: any, i: any) => (
                 <div key={i} className="block py-5 lg:py-7">
                   <h2 className="nc-card-title text-sm lg:text-base font-semibold">
                     <Link to={post.href} className="line-clamp-2">

@@ -14,7 +14,7 @@ import Link from "components/Link";
 import { useNavigate } from "react-router-dom";
 
 const categories = DEMO_CATEGORIES.filter((_, i) => i < 9);
-const posts = DEMO_POSTS.filter((_, i) => i < 5);
+const posts = DEMO_POSTS.filter((_: any, i: any) => i < 5);
 const authors = DEMO_AUTHORS.filter((_, i) => i < 9);
 
 function classNames(...classes: any) {
@@ -38,7 +38,9 @@ const SearchModal: FC<Props> = ({ renderTrigger }) => {
       ? posts
       : query === "" || rawQuery.startsWith(">")
       ? []
-      : posts.filter((project) => project.title.toLowerCase().includes(query));
+      : posts.filter((project: any) =>
+          project.title.toLowerCase().includes(query)
+        );
 
   const filteredProjects =
     rawQuery === "#"
@@ -165,7 +167,7 @@ const SearchModal: FC<Props> = ({ renderTrigger }) => {
                             Posts
                           </h2>
                           <ul className="-mx-4 mt-2 text-sm text-gray-700">
-                            {filteredPosts.map((post) => (
+                            {filteredPosts.map((post: any) => (
                               <Combobox.Option
                                 key={post.id}
                                 value={post}

@@ -17,7 +17,6 @@ const PostCardMeta: FC<PostCardMetaProps> = ({
   avatarSize = "h-7 w-7 text-sm",
 }) => {
   const { date, author } = meta || {};
-
   return (
     <div
       className={`nc-PostCardMeta inline-flex items-center flex-wrap text-neutral-800 dark:text-neutral-200 ${className}`}
